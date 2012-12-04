@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>数独</title>
+<title>数独(回答)</title>
 </head>
 <body>
-問題を入力してください。
-<form method="POST" action="create">
-<textarea name="quiz" cols="12"></textarea>
-<input type="submit">
-</form>
+入力:
+<pre>${ quiz }</pre>
+
+回答:
+<pre>${ sudoku.dump() }</pre>
+
 </body>
 </html>
