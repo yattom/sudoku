@@ -16,13 +16,14 @@ public class Sudoku {
     public Sudoku(String quiz) {
         board = new ArrayList<>();
 
-        String[] rows = quiz.split("\n");
+        int quizIndex = 0;
         for (int row = 0; row < ROW_SIZE; row++) {
             for (int col = 0; col < COL_SIZE; col++) {
                 Cell cell = new Cell();
                 cell.row = row;
                 cell.col = col;
-                cell.value = String.valueOf(rows[row].charAt(col));
+                cell.value = quiz.substring(quizIndex, quizIndex + 1);
+                quizIndex++;
                 board.add(cell);
             }
         }
@@ -31,14 +32,13 @@ public class Sudoku {
     public void fill_all_obvious() {
     }
 
-    public String getAnswer() {
+    public String getCurrentBoard() {
         StringBuilder answer = new StringBuilder();
         for(int row = 0; row < ROW_SIZE; row++) {
             List<String> r = getRow(row);
             for(String c : r) {
                 answer.append(c);
             }
-            answer.append("\n");
         }
         return answer.toString();
     }
