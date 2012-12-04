@@ -83,4 +83,28 @@ public class Sudoku {
                 + col + ")");
     }
 
+    public String dump() {
+        int emptyCount = 0;
+        StringBuilder dump = new StringBuilder();
+        for(int row = 0; row < ROW_SIZE; row++) {
+            if(row > 0 && row % 3 == 0) {
+                dump.append("---+---+---\n");
+            }
+
+            List<String> r = getRow(row);
+            for(int col = 0; col < COL_SIZE; col++) {
+                if(col > 0 && col % 3 == 0) {
+                    dump.append("|");
+                }
+                dump.append(r.get(col));
+                if(EMPTY.equals(r.get(col))) {
+                    emptyCount++;
+                }
+            }
+            dump.append("\n");
+        }
+        dump.append("\n" + emptyCount + " Empty Cell(s)\n");
+        return dump.toString();
+    }
+
 }
