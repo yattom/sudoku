@@ -3,10 +3,12 @@ package jp.yattom.pairpro.sudoku;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SudokuTest {
 
+    @Ignore
     @Test
     public void 自明なセルをすべて埋められる() {
         String quiz =
@@ -20,7 +22,8 @@ public class SudokuTest {
                 "94612.3..\n" +
                 "5128..947\n";
         Sudoku sudoku = new Sudoku(quiz);
-        String actual = sudoku.fill_all_obvious();
+        sudoku.fill_all_obvious();
+        String actual = sudoku.getAnswer();
         String expected = 
                 "764359821\n" +
                 "298614573\n" +
@@ -31,6 +34,34 @@ public class SudokuTest {
                 "837945216\n" +
                 "946127358\n" +
                 "512836947\n";
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void 横一行を見て埋められる() {
+        String quiz =
+                ".64359821\n" +
+                ".98614573\n" +
+                ".51278469\n" +
+                ".29581734\n" +
+                ".75493682\n" +
+                ".83762195\n" +
+                ".37945216\n" +
+                ".46127358\n" +
+                ".12836947\n";
+        Sudoku sudoku = new Sudoku(quiz);
+        sudoku.fill(0, 0);
+        String actual = sudoku.getAnswer();
+        String expected =
+                "764359821\n" +
+                ".98614573\n" +
+                ".51278469\n" +
+                ".29581734\n" +
+                ".75493682\n" +
+                ".83762195\n" +
+                ".37945216\n" +
+                ".46127358\n" +
+                ".12836947\n";
         assertThat(actual, is(expected));
     }
 }
